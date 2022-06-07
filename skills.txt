@@ -1,0 +1,7 @@
+Skills: 
+htmls/css
+javascript
+postgre
+react
+nodejs
+testes automatizados

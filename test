@@ -1,0 +1,57 @@
+select *
+from employees;
+
+
+select upper(first_name),
+lower(last_name),
+upper(title_of_courtesy) || ' ' || first_name || ' ' || lower(last_name)
+from employees
+where lower(first_name) like 'm%';
+
+
+select '     teste     ' as original,
+trim('     teste     ') as trim_total,
+ltrim('     teste     ') as ltrim_total,
+rtrim('     teste     ') as rtrim_total;
+
+select title,
+substring(title, 1, 5)from employees;
+
+select title 
+from employees
+where substring(title, 1, 5) = 'Sales';
+
+select right('Hello', 2),
+left('Test', 2),
+position('es' in 'test'),
+replace('Abacaxi', 'xi', 'te');
+
+
+CREATE TABLE agencia(
+	agencia_id SERIAL PRIMARY KEY,
+	nome varchar(100) NOT NULL,
+	endereco varchar(200),
+	telefone text
+);
+
+CREATE TABLE cliente(
+	cliente_id SERIAL PRIMARY KEY,
+	nome varchar(100) NOT NULL,
+	rg text unique not null,
+	conta text ,
+	endereco text,	
+	renda numeric,
+	data_nasc date
+);
+
+CREATE TABLE cadastra_ag_cliente(
+	cadastro_id serial primary key,
+	agencia_id_fk int references agencia(agencia_id),
+	cliente_id_fk int references cliente(cliente_id),
+	data_conta date,
+	conta text,
+	
+	constraint ag_cliente_unique unique (agencia_id_fk, cliente_id_fk)
+);
+
+ 
